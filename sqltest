@@ -1,0 +1,5 @@
+#!/bin/bash
+ssh root@192.168.197.195 -i ~/.ssh/id_rsa_env << EOF
+mysql -ungs_job -peebuCh6gei --database="ngs_job3" -e"delete from users_auth_2 where phone_value='79069077434'"
+exit
+EOF
