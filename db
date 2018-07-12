@@ -1,0 +1,13 @@
+#!/bin/bash
+sudo apt-get install jq -y > /dev/null 2>&1
+echo "jq установлен"
+base=$1
+ENV=$2
+
+bdurl="https://deployer.zp.d/api/environment/${ENV}/"
+echo $bdurl
+jqparams=".environment.resources.dtb."hosts_by_role".\"${base}\"[]."IP""
+bdip=$(curl -s $bdurl -k | jq -r $jqparams)
+
+ssh root@$bdip -i ~/.ssh/id_rsa_env
+
